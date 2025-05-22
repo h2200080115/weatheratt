@@ -31,23 +31,29 @@
         {% endif %}
     </div>
 
+    <!-- Chat Icon (bottom-right corner) -->
+    <div id="chat-icon" title="Chat (coming soon)">💬</div>
+
     <script>
         let isCelsius = true;
-        document.getElementById('toggle-temp').addEventListener('click', function() {
-            const tempElement = document.getElementById('temperature');
-            let temp = parseFloat(tempElement.textContent.replace('Temperature: ', '').replace('°C', ''));
+        const toggleBtn = document.getElementById('toggle-temp');
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', function() {
+                const tempElement = document.getElementById('temperature');
+                let temp = parseFloat(tempElement.textContent.replace('Temperature: ', '').replace('°C', '').replace('°F', ''));
 
-            if (isCelsius) {
-                temp = temp * 9 / 5 + 32;
-                tempElement.textContent = `Temperature: ${temp.toFixed(1)}°F`;
-                this.textContent = "Switch to Celsius";
-            } else {
-                temp = (temp - 32) * 5 / 9;
-                tempElement.textContent = `Temperature: ${temp.toFixed(1)}°C`;
-                this.textContent = "Switch to Fahrenheit";
-            }
-            isCelsius = !isCelsius;
-        });
+                if (isCelsius) {
+                    temp = temp * 9 / 5 + 32;
+                    tempElement.textContent = `Temperature: ${temp.toFixed(1)}°F`;
+                    this.textContent = "Switch to Celsius";
+                } else {
+                    temp = (temp - 32) * 5 / 9;
+                    tempElement.textContent = `Temperature: ${temp.toFixed(1)}°C`;
+                    this.textContent = "Switch to Fahrenheit";
+                }
+                isCelsius = !isCelsius;
+            });
+        }
     </script>
 </body>
 </html>
